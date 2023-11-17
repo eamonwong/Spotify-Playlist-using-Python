@@ -5,27 +5,31 @@ import json
 scope = 'playlist-modify-public'
 username = 'eamonwong'
 
-token = SpotifyOAuth(scope=scope,username=username)
-spotifyObject = spotipy.Spotify(auth_manager = token)
+# Obtain the authentication token for the authenticated user
+token = SpotifyOAuth(scope=scope, username=username)
+spotifyObject = spotipy.Spotify(auth_manager=token)
 
-# Create the playlist
+# Get information about the authenticated user
+user_info = spotifyObject.current_user()
+authenticated_username = user_info['id']
+
+# Create the playlist for the authenticated user
 playlist_name = input("Enter a playlist name: ")
 playlist_description = input("Enter a playlist description: ")
 
-spotifyObject.user_playlist_create(user=username,name=playlist_name,public=True,description=playlist_description)
+spotifyObject.user_playlist_create(user=authenticated_username, name=playlist_name, public=True, description=playlist_description)
 
 user_input = input("Enter the songs: ")
 list_of_songs = []
 
-while user_input != 'quit':
+while user_input.lower() != 'quit':
     result = spotifyObject.search(q=user_input)
-    # print(json.dumps(result,sort_keys=4,indent=4)
-    list_of_songs.append(result['track']['items'][0]['uri'])
-    user_input = input("'Enter the song: ")
+    list_of_songs.append(result['tracks']['items'][0]['uri'])
+    user_input = input("Enter the song: ")
 
-# Find new playlist
-prePlaylist = spotifyObject.user_playlists(user=username)
-playlist = prePlaylist['items'][0]['id']
+# Find the newly created playlist for the authenticated user
+pre_playlists = spotifyObject.current_user_playlists()
+playlist = pre_playlists['items'][0]['id']
 
-# Add songs
-spotifyObject.user_playlist_add_tracks(user=username,playlist_id=playlist,tracks=list_of_songs)
+# Add songs to the authenticated user's playlist
+spotifyObject.playlist_add_items(playlist_id=playlist, items=list_of_songs)
