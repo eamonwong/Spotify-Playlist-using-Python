@@ -3,7 +3,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import json
 
 scope = 'playlist-modify-public'
-username = 'eamonwong'
+username = # username from Spotify in e.g: 'eamonwong'
 
 # Obtain the authentication token for the authenticated user
 token = SpotifyOAuth(scope=scope, username=username)
