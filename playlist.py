@@ -25,7 +25,7 @@ list_of_songs = []
 while user_input.lower() != 'quit':
     result = spotifyObject.search(q=user_input)
     list_of_songs.append(result['tracks']['items'][0]['uri'])
-    user_input = input("Enter the song: ")export SPOTIPY_REDIRECT_UR
+    user_input = input("Enter the song: ")
 
 # Find the newly created playlist for the authenticated user
 pre_playlists = spotifyObject.current_user_playlists()
