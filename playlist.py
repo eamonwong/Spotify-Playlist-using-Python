@@ -35,6 +35,6 @@ playlist = pre_playlists['items'][0]['id']
 spotifyObject.playlist_add_items(playlist_id=playlist, items=list_of_songs)
 
 # Have to export these in terminal for project to work
-# export SPOTIPY_CLIENT_ID
-# export SPOTIPY_CLIENT_SECRET
-# export SPOTIPY_REDIRECT_URI
+# export SPOTIPY_CLIENT_ID=Client ID
+# export SPOTIPY_CLIENT_SECRET=Client secret
+# export SPOTIPY_REDIRECT_URI=Redirect URI
