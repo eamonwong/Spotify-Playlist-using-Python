@@ -38,6 +38,6 @@ Contributions to the project are encouraged! Feel free to fork the repository an
 Acknowledgments
 This project is inspired by the desire to bridge the gap between Python programming and music curation. Special thanks to Spotify for providing a comprehensive API for developers.
 
-Enjoy crafting your musical journey with Spotify Playlist using Python! If you have any feedback or suggestions, please feel free to open an issue or reach out. Happy listening!
+Enjoy crafting your musical journey with Spotify Playlist using Python! Happy listening!
 
 https://github.com/eamonwong/Spotify-Playlist-using-Python/assets/75913022/6418ba3c-7642-4af9-bed7-c450b89e2db0
