@@ -26,7 +26,7 @@ Future Enhancements
 While the current version provides essential playlist management functionality, there are opportunities for future improvements:
 
 - Playlist Collaboration:
- - Explore the possibility of collaborative playlists that multiple users can contribute to.
+  - Explore the possibility of collaborative playlists that multiple users can contribute to.
 
 - Playlist Recommendations:
   - Integrate features that suggest songs based on user preferences, enhancing the playlist creation experience.
