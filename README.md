@@ -1,7 +1,7 @@
 # Spotify Playlist using Python
 Welcome to the Spotify Playlist using Python project! This Python-based initiative empowers users to seamlessly create and manage playlists on Spotify, adding a personalised touch to their music experience. Leveraging the Spotify API from Spotify for Developers, users can dynamically add songs to their playlists, creating a curated musical journey.
 
-Features and Functionality
+## Features and Functionality
 - Playlist Creation:
   - Users have the ability to create new playlists directly from the Python script.
   - This feature ensures a streamlined process for organizing and categorising favorite tracks.
@@ -21,7 +21,7 @@ Features and Functionality
   - It is crucial to protect your Spotify API credentials, especially the client secret key. Never share this key in public repositories or with unauthorised users to prevent unauthorised access to your Spotify account.
 
 
-Future Enhancements
+## Future Enhancements
 
 While the current version provides essential playlist management functionality, there are opportunities for future improvements:
 
@@ -34,7 +34,7 @@ While the current version provides essential playlist management functionality, 
 - User Authentication Flow:
   - Enhance the user authentication flow for a more user-friendly experience.
 
-Acknowledgments
+## Acknowledgments
 
 This project is inspired by the desire to bridge the gap between Python programming and music curation. Special thanks to Spotify for providing a comprehensive API for developers.
 
