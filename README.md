@@ -38,6 +38,6 @@ While the current version provides essential playlist management functionality, 
 
 This project is inspired by the desire to bridge the gap between Python programming and music curation. Special thanks to Spotify for providing a comprehensive API for developers.
 
-Enjoy crafting your musical journey with Spotify Playlist using Python! Happy listening!
+Happy listening!
 
 https://github.com/eamonwong/Spotify-Playlist-using-Python/assets/75913022/6418ba3c-7642-4af9-bed7-c450b89e2db0
