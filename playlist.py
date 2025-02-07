@@ -1,12 +1,19 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-import json
+import os
 
-scope = 'playlist-modify-public'
-username = # username from Spotify in e.g: 'eamonwong'
+client_id = #client_id
+client_secret = #client_secret
+redirect_uri = #redirect_uri
+scope = 'playlist-modify-public user-library-read'  # Modified to combine playlist modification and user library read scopes
 
-# Obtain the authentication token for the authenticated user
-token = SpotifyOAuth(scope=scope, username=username)
+# Authenticate with Spotify
+token = SpotifyOAuth(
+    client_id=client_id,
+    client_secret=client_secret,
+    redirect_uri=redirect_uri,
+    scope=scope
+)
 spotifyObject = spotipy.Spotify(auth_manager=token)
 
 # Get information about the authenticated user
@@ -17,24 +24,31 @@ authenticated_username = user_info['id']
 playlist_name = input("Enter a playlist name: ")
 playlist_description = input("Enter a playlist description: ")
 
-spotifyObject.user_playlist_create(user=authenticated_username, name=playlist_name, public=True, description=playlist_description)
+playlist = spotifyObject.user_playlist_create(user=authenticated_username, name=playlist_name, public=True,
+                                              description=playlist_description)
+playlist_id = playlist['id']
 
-user_input = input("Enter the songs: ")
+# Add songs to the playlist
 list_of_songs = []
+user_input = input("Enter a song name (or 'quit' to finish): ")
 
 while user_input.lower() != 'quit':
-    result = spotifyObject.search(q=user_input)
-    list_of_songs.append(result['tracks']['items'][0]['uri'])
-    user_input = input("Enter the song: ")
+    result = spotifyObject.search(q=user_input, type='track', limit=15)
+    tracks = result['tracks']['items']
 
-# Find the newly created playlist for the authenticated user
-pre_playlists = spotifyObject.current_user_playlists()
-playlist = pre_playlists['items'][0]['id']
+    if tracks:
+        for i, track in enumerate(tracks):
+            print(f"{i + 1}. {track['name']} by {track['artists'][0]['name']}")
+        selection = int(input("Enter the number of the correct song: ")) - 1
+        list_of_songs.append(tracks[selection]['uri'])
+    else:
+        print("No results found.")
 
-# Add songs to the authenticated user's playlist
-spotifyObject.playlist_add_items(playlist_id=playlist, items=list_of_songs)
+    user_input = input("Enter another song name (or 'quit' to finish): ")
 
-# Have to export these in terminal for project to work
-# export SPOTIPY_CLIENT_ID=Client ID
-# export SPOTIPY_CLIENT_SECRET=Client secret
-# export SPOTIPY_REDIRECT_URI=Redirect URI
+# Add the selected songs to the playlist
+if list_of_songs:
+    spotifyObject.playlist_add_items(playlist_id=playlist_id, items=list_of_songs)
+    print(f"Added {len(list_of_songs)} songs to the playlist '{playlist_name}'.")
+else:
+    print("No songs were added to the playlist.")
