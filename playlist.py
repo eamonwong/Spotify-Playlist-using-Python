@@ -39,8 +39,21 @@ while user_input.lower() != 'quit':
     if tracks:
         for i, track in enumerate(tracks):
             print(f"{i + 1}. {track['name']} by {track['artists'][0]['name']}")
-        selection = int(input("Enter the number of the correct song: ")) - 1
-        list_of_songs.append(tracks[selection]['uri'])
+
+        # Allow the user to type "n/a" if the song is not in the list
+        selection = input("Enter the number of the correct song (or 'n/a' if the song is not listed): ")
+
+        if selection.lower() == 'n/a':
+            print("Skipping this song.")
+        else:
+            try:
+                selection = int(selection) - 1
+                if 0 <= selection < len(tracks):
+                    list_of_songs.append(tracks[selection]['uri'])
+                else:
+                    print("Invalid selection. Skipping this song.")
+            except ValueError:
+                print("Invalid input. Skipping this song.")
     else:
         print("No results found.")
 
